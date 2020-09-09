@@ -52,13 +52,4 @@ export class Order {
     get total(): number {
         return [...this.lines.values()].reduce((total, ol) => total += ol.total, 0)
     }
-
-    // this is a hack to ensure we have a new object which can cause a rerender
-    // see: 
-    // * https://stackoverflow.com/questions/56266575/why-is-usestate-not-triggering-re-render
-    // * https://stackoverflow.com/questions/58784464/usestate-not-rerendering-when-update-function-is-called-inside-onclick-function
-    // * https://www.freecodecamp.org/news/get-pro-with-react-setstate-in-10-minutes-d38251d1c781/
-    public makeACopy() : Order {
-        return new Order(this.orderLines)
-    }
 }

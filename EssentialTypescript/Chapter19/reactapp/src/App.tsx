@@ -19,9 +19,14 @@ const App: FunctionComponent<Props> = () => {
         categories={[...new Set(testData.map(p=>p.category))]}
         order={order}
         addToOrder={(product: Product, quantity: number) => {
-          order.addProduct(product, quantity)
-          let orderCopy = order.makeACopy()
-          setOrder(orderCopy)
+
+          // this is a hack to ensure we have a new object which can cause a rerender
+          // see: 
+          // * https://stackoverflow.com/questions/56266575/why-is-usestate-not-triggering-re-render
+          // * https://stackoverflow.com/questions/58784464/usestate-not-rerendering-when-update-function-is-called-inside-onclick-function
+          // * https://www.freecodecamp.org/news/get-pro-with-react-setstate-in-10-minutes-d38251d1c781/
+          let orderCopy = Object.create(order) // shallow copy
+          orderCopy.addProduct(product, quantity)
         }}
       />
     </div>
