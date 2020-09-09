@@ -7,11 +7,8 @@ let testData: Product[] = [1, 2, 3, 4, 5].map(num => ({
   id: num, name: `Prod${num}`, category: `Cat${num %2}`,
   description: `Product ${num}`, price: 100 + (num * 10)}))
 
-interface Props {
-  // no props required
-}
-
-const App: FunctionComponent<Props> = () => {
+// Note: no need to define an empty `Props` if there are no properties required
+const App: FunctionComponent = () => {
   const [order, setOrder] = useState<Order>(new Order())
 
       return <div className="App">
@@ -25,8 +22,9 @@ const App: FunctionComponent<Props> = () => {
           // * https://stackoverflow.com/questions/56266575/why-is-usestate-not-triggering-re-render
           // * https://stackoverflow.com/questions/58784464/usestate-not-rerendering-when-update-function-is-called-inside-onclick-function
           // * https://www.freecodecamp.org/news/get-pro-with-react-setstate-in-10-minutes-d38251d1c781/
-          let orderCopy = Object.create(order) // shallow copy
+          let orderCopy = Object.create(order) // shallow copy see: https://stackoverflow.com/questions/28150967/typescript-cloning-object
           orderCopy.addProduct(product, quantity)
+          setOrder(orderCopy)
         }}
       />
     </div>
