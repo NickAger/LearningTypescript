@@ -3,7 +3,10 @@ import { Order } from "./entities"
 import { Reducer } from "redux"
 
 export const StoreReducer: Reducer<StoreData, StoreAction> = (data: StoreData | undefined, action) => {
-    data = data || {products: [], order: new Order() }
+    if (data === undefined) {
+        return  {products: [], order: new Order() }
+    }
+
     switch(action.type) {
         case ACTIONS.ADD_PRODUCTS:
             return {
