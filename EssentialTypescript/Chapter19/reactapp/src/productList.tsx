@@ -45,5 +45,5 @@ export const ProductList: FunctionComponent<Props> = (props) => {
 function filteredProducts(products: Product[], selectedCategory: string): Product[] {
     return products.filter(p => 
         selectedCategory === "All" || p.category === selectedCategory
-        )
+    )
 }
