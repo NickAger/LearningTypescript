@@ -25,5 +25,5 @@ To solve use one of the following:
 * Use `yarn` rather than `npm` for installing subsequent packages. 
 
 ```
-npx create-react-app reactapp --template typescript **--use-npm**
+npx create-react-app reactapp --template typescript --use-npm
 ```
