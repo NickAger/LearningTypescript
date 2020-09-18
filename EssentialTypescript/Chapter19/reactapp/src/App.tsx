@@ -16,8 +16,7 @@ import { Summary } from "./summary"
 const App: FunctionComponent = () => {
   const [httpHandler] = useState<HttpHandler>(()=>{
     const handler = new HttpHandler()
-    handler.loadProducts(data => {
-      console.log("Downloaded data")      
+    handler.loadProducts(data => {  
       dataStore.dispatch(addProduct(...data))
     })
     return handler   
